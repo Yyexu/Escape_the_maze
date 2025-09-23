@@ -1,47 +1,49 @@
-#include "Player.h"
+ï»¿#include "Player.h"
 #include "map.h"
 
-extern Map* map[COL][ROW];      // Óë¶¨Òå´¦Á´½Ó
+extern Map* map[COL][ROW];      // ä¸å®šä¹‰å¤„é“¾æ¥
 
-Player::Player(int gx, int gy) : gridX(gx), gridY(gy) { 
+Player::Player(int gx, int gy) : gridX(gx), gridY(gy) {
     syncPix();
-    oldPixX = pixX;          // 2. ³õÊ¼¾É×ø±ê=µ±Ç°×ø±ê
+    oldPixX = pixX;
     oldPixY = pixY;
 }
 
 void Player::move(int dx, int dy)
 {
     if (canGo(dx, dy)) {
-        oldPixX = pixX;          // 3. ±£´æµ±Ç°Ö¡µÄÎ»ÖÃ
+        oldPixX = pixX;
         oldPixY = pixY;
         gridX += dx;
         gridY += dy;
+        Steps++;
         syncPix();
+
     }
 }
 
 void Player::draw() const
 {
-    setfillcolor(WHITE);                     // ±³¾°É«
-    solidcircle(oldPixX, oldPixY, RODE / 2);   // ²Áµô¾ÉÔ²
+    setfillcolor(WHITE);
+    solidcircle(oldPixX, oldPixY, RODE / 2);
 
-    setfillcolor(BLUE);                      // Íæ¼ÒÉ«
-    solidcircle(pixX, pixY, RODE / 2);      // »­ĞÂÔ²
+    setfillcolor(BLUE);
+    solidcircle(pixX, pixY, RODE / 2);
 
-    oldPixX = pixX;   // 4. ¸üĞÂ¾É×ø±ê£¨¹©ÏÂÒ»Ö¡²Á³ı£©
+    oldPixX = pixX;
     oldPixY = pixY;
 }
 
 bool Player::reachEnd() const
 {
-    return map[gridX][gridY]->isEnd;   // ĞèÒªÄãÔÚ Map Àï¼ÓÁË bool isEnd=false;
+    return map[gridX][gridY]->isEnd;
 }
 
-/* ---------- ÄÚ²¿¹¤¾ß ---------- */
+/* ---------- å†…éƒ¨å·¥å…· ---------- */
 void Player::syncPix()
 {
-    pixX = gridX * (RODE + WALL) ;
-    pixY = gridY * (RODE + WALL) ;
+    pixX = gridX * (RODE + WALL);
+    pixY = gridY * (RODE + WALL);
 }
 
 bool Player::canGo(int dx, int dy) const
@@ -52,7 +54,7 @@ bool Player::canGo(int dx, int dy) const
 
     Map* from = map[gridX][gridY];
     Map* to = map[nx][ny];
-    for (Map* nei : from->next)      
+    for (Map* nei : from->next)
         if (nei == to) return true;
     return false;
 }

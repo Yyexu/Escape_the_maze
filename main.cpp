@@ -9,6 +9,7 @@
 #include <windows.h>
 #include "map.h"
 #include "game.h"
+#include "config.h"
 
 
 int main()
@@ -36,7 +37,7 @@ int main()
 
 		if (MouseHit()) {
 			MOUSEMSG msg = GetMouseMsg();
-			printf("Mouse Clicked at: X=%d, Y=%d\n", msg.x, msg.y);
+			//printf("Mouse Clicked at: X=%d, Y=%d\n", msg.x, msg.y);
 			//当是主菜单的时候，记录主菜单的点击效果
 			if (state == MAIN_MENU) {
 				switch (msg.uMsg) {
@@ -50,21 +51,6 @@ int main()
 						state = GAME_PLAY;
 						game.render(state);
 
-					}
-					// 难度设置按钮
-					if (msg.x >= 500 && msg.x <= 700 && msg.y >= 425 && msg.y <= 475) {
-						printf("你按到了难度设置\n");
-						game.playSound(_T("res\\music\\click.wav"), _T("click"));
-					}
-					// 皮肤选择按钮
-					if (msg.x >= 500 && msg.x <= 700 && msg.y >= 525 && msg.y <= 575) {
-						printf("你按到了皮肤选择\n");
-						game.playSound(_T("res\\music\\click.wav"), _T("click"));
-					}
-					// 地图选择按钮
-					if (msg.x >= 500 && msg.x <= 700 && msg.y >= 625 && msg.y <= 675) {
-						printf("你按到了地图选择\n");
-						game.playSound(_T("res\\music\\click.wav"), _T("click"));
 					}
 					break;
 			    }
