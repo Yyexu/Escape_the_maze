@@ -3,8 +3,8 @@ StartX = 1
 StartY = 1
 EndX   = 4
 EndY   = 3
+Skin = 2
 UseCustomMap = 0    # 1=用自定义图  0=用随机迷宫
-
 [CustomMap]
 1111111111
 1000000001

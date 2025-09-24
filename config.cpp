@@ -9,8 +9,8 @@ int START_X = 0;
 int START_Y = 0;
 int END_X = COL - 1;
 int END_Y = ROW - 1;
-
 bool USE_CUSTOM_MAP = false;   // 默认关闭
+int Skin = 0;
 
 static std::string trim(const std::string& s) {
     size_t f = s.find_first_not_of(" \t\r\n");
@@ -45,6 +45,7 @@ void initConfig() {
         else if (key == "EndX")   END_X = std::atoi(val.c_str());
         else if (key == "EndY")   END_Y = std::atoi(val.c_str());
         else if (key == "UseCustomMap") USE_CUSTOM_MAP = (std::atoi(val.c_str()) != 0);
+        else if (key == "Skin")  Skin = std::atoi(val.c_str());
     }
 
     // 合法性 clamp

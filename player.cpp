@@ -1,5 +1,6 @@
 ﻿#include "Player.h"
 #include "map.h"
+#include "config.h"
 
 extern Map* map[COL][ROW];      // 与定义处链接
 
@@ -23,15 +24,34 @@ void Player::move(int dx, int dy)
 }
 
 void Player::draw() const
-{
-    setfillcolor(WHITE);
-    solidcircle(oldPixX, oldPixY, RODE / 2);
+{   
+    if (Skin == 0) {
+        setfillcolor(WHITE);
+        solidcircle(oldPixX, oldPixY, RODE / 2);
+        setfillcolor(BLUE);
+        solidcircle(pixX, pixY, RODE / 2);
+        oldPixX = pixX;
+        oldPixY = pixY;
+    }
+    else if (Skin == 1) {
+        setfillcolor(WHITE);
+        solidrectangle(oldPixX-RODE/2, oldPixY - RODE / 2, oldPixX + RODE / 2, oldPixY + RODE / 2);
+        setfillcolor(BLUE);
+        solidrectangle(pixX - RODE / 2, pixY - RODE / 2, pixX + RODE / 2, pixY + RODE / 2);
+        oldPixX = pixX;
+        oldPixY = pixY;
+    }
+    else if (Skin == 2) {
+        POINT pts_old[] = { {oldPixX, oldPixY - RODE/2}, {oldPixX-RODE/2,oldPixY+RODE/2}, {oldPixX+RODE/2, oldPixY+RODE/2} };
+        setfillcolor(WHITE);
+        solidpolygon(pts_old, 3);
 
-    setfillcolor(BLUE);
-    solidcircle(pixX, pixY, RODE / 2);
-
-    oldPixX = pixX;
-    oldPixY = pixY;
+        POINT pts[] = { {pixX, pixY - RODE / 2}, {pixX - RODE / 2,pixY + RODE / 2}, {pixX + RODE / 2, pixY + RODE / 2} };
+        setfillcolor(BLUE);
+        solidpolygon(pts, 3);
+        oldPixX = pixX;
+        oldPixY = pixY;
+    }
 }
 
 bool Player::reachEnd() const

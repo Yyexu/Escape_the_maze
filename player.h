@@ -1,6 +1,7 @@
 #pragma once
-#include <easyx.h>      // 只用到 setfillcolor / solidcircle
-#include "Map.h"        // 你的 Map 类声明，只要里面有 neighbors 容器即可
+#include <easyx.h>  
+
+#include "Map.h"        
 
 extern Map* maze[COL][ROW];
 

@@ -17,6 +17,7 @@ extern int START_X;
 extern int START_Y;
 extern int END_X;
 extern int END_Y;
+extern int Skin;
 
 // ③ 读入自定义墙图（1墙 0路）
 std::vector<std::vector<bool>> loadCustomMap();

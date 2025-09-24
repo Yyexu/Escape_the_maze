@@ -65,7 +65,7 @@ void Game::render(enum GameState state) {
 
 		cleardevice();
 		loadimage(NULL, _T("res/pic/bg.jpg"), 1200, 900, true);
-		DrawButton(GAME_WIDTH / 2, GAME_HEIGHT / 2 - 100, 200, 50, _T("开始游戏"));
+		DrawButton(GAME_WIDTH / 2, GAME_HEIGHT / 2 , 200, 50, _T("开始游戏"));
 		break;
 
 		// 游戏界面
